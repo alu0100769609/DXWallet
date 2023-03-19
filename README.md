@@ -1,4 +1,4 @@
-# wallet_v2
+# DX-Wallet
 
 Proyecto Wallet para TFG
 
