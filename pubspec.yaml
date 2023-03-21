@@ -13,9 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  fluttertoast: ^8.2.1
-
-  cupertino_icons: ^1.0.2
+  fluttertoast: ^8.2.1 # Toast para interacción de usuario
+  cupertino_icons: ^1.0.2 # Iconos tipo IOS
+  http: ^0.13.5 # Para peticiones html
 
 dev_dependencies:
   flutter_test:
