@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wallet_v2/components/appbar/LogoAppBar.dart';
-import 'package:wallet_v2/components/login/InputText.dart';
+import 'package:wallet_v2/components/appbar/LoginAppBar.dart';
+import 'package:wallet_v2/components/inputtext/InputText.dart';
 
 import 'package:wallet_v2/constants/constants.dart';
 import 'package:wallet_v2/constants/strings.dart';
@@ -9,13 +9,16 @@ import 'package:wallet_v2/constants/strings.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+/// ////////////////////////////////////////////////////////////////////////////
+/// //////////////////////////// VISTA DE LOGIN ////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const LogoAppBar(),
+      appBar: const LoginAppBar(),
       body:  Column(
         children: [
           gapH30,
@@ -82,6 +85,10 @@ class Login extends StatelessWidget {
     );
   }
 }
+
+/// ////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////// PETICIÓN AL SERVIDOR ////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////
 
 // Define la función que maneja la petición de inicio de sesión
 Future<void> login(String email, String password) async {

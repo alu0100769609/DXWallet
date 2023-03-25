@@ -1,1 +1,0 @@
-//TODO: Aquí la petición genérica con las conexiones pertinentes

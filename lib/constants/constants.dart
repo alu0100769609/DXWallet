@@ -38,6 +38,9 @@ const double normalSize = 15;
 const double smallSize = 10;
 
 /// Empty boxes: Para separar elementos
+// Caja vacía para "simular vacío"
+const SizedBox emptyBox = SizedBox();
+
 // Cajas vacías para la separación en filas
 const SizedBox gapH10 = SizedBox(height: 10);
 const SizedBox gapH20 = SizedBox(height: 20);
