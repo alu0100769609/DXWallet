@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_v2/constants/constants.dart';
+import '/constants/Constants.dart';
 
 class LoginAppBar extends StatefulWidget implements PreferredSizeWidget {
   const LoginAppBar({Key? key}) : preferredSize = const Size.fromHeight(kToolbarHeight), super(key: key);
@@ -12,6 +12,7 @@ class LoginAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _LoginAppBar extends State<LoginAppBar>{
+  static const double largeLogoHeight = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,10 @@ class _LoginAppBar extends State<LoginAppBar>{
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset(largeLogoRoute, height: largeLogoHeight)
+          Image.asset(LARGE_LOGO_ROUTE, height: largeLogoHeight)
         ],
       ),
-      backgroundColor: colorPrimaryDark,
+      backgroundColor: CUSTOM_PRIMARY_DARK,
     );
   }
 }

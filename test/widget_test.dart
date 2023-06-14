@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:wallet_v2/main.dart';
-import 'package:wallet_v2/views/Login.dart';
+import 'package:wallet_v2/views/SignIn.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

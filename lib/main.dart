@@ -1,17 +1,16 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:wallet_v2/views/Ejemplo.dart';
-import 'package:wallet_v2/views/Login.dart';
+
+import 'views/SignIn.dart';
+import 'views/SignUp.dart';
 
 void main() {
   runApp(
     MaterialApp(
       title: "Named routes",
-      initialRoute: "ejemplo",
+      initialRoute: "/",
       routes: {
         '/': (context)=> Login(),
-        'ejemplo': (context)=> LoginScreen(),
+        'Register': (context)=> const Register(),
       },
     )
   );

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 /************** Este archivo contiene las siguientes constantes: **************/
 
 /// Colors: Para controlar los colores personalizados
-/// Routes:
+/// Routes: Para conexiones internas y externas
+/// RegExp: Para expresiones regulares
 /// Text Size: Para controlar los tamaños de los textos
 /// Empty boxes: Para separar elementos
 
@@ -11,35 +12,39 @@ import 'package:flutter/material.dart';
 
 
 /// Colors: Para controlar los colores personalizados
-const Color colorLightGrey = Color.fromRGBO(216, 224, 231, 1);
-const Color colorBlack = Colors.black;
+const Color CUSTOM_LIGHT_GREY = Color.fromRGBO(216, 224, 231, 1);
+const Color CUSTOM_BLACK = Colors.black;
 
 // COLORES DEL LOGO
 
 // Morado Fondo: #341134
-const Color colorPrimaryDark = Color.fromRGBO(52, 17, 52, 1);
+const Color CUSTOM_PRIMARY_DARK = Color.fromRGBO(52, 17, 52, 1);
 // Azul Claro: #AADCDC
-const Color colorSecondary = Color.fromRGBO(170, 220, 220, 1);
+const Color CUSTOM_SECONDARY = Color.fromRGBO(170, 220, 220, 1);
 // Azul Oscuro: #198BBD
-const Color colorSecondaryDark = Color.fromRGBO(25, 139, 189, 1);
+const Color CUSTOM_SECONDARY_DARK = Color.fromRGBO(25, 139, 189, 1);
 // Rosa Claro: #FF66C4
-const Color colorLightPink = Color.fromRGBO(255, 102, 196, 1);
+const Color CUSTOM_LIGHT_PINK = Color.fromRGBO(255, 102, 196, 1);
 // Rosa Oscuro: #C700FF
-const Color colorPrimary = Color.fromRGBO(199, 0, 255, 1);
+const Color CUSTOM_PRIMARY = Color.fromRGBO(199, 0, 255, 1);
 
-/// Logo
-const String largeLogoRoute = "assets/images/LogoAlargado.jpg";
-const double largeLogoHeight = 50;
+/// Routes: Para conexiones internas y externas
+const String LOGIN_URL = 'https://sebt.es/adexe/app_related/register_login/login.php';
+const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
+const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";
+
+/// RegExp: Para expresiones regulares
+const String REGEXP_VALIDATE_EMAIL = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
 /// Text Size: Para controlar los tamaños de los textos
-const double titleSize = 30;
-const double subtitleSize = 20;
-const double normalSize = 15;
-const double smallSize = 10;
+const double TITLE_SIZE = 30;
+const double SUBTITLE_SIZE = 20;
+const double NORMAL_SIZE = 15;
+const double SMALL_SIZE = 10;
 
 /// Empty boxes: Para separar elementos
 // Caja vacía para "simular vacío"
-const SizedBox emptyBox = SizedBox();
+const SizedBox EMPTY_BOX = SizedBox();
 
 // Cajas vacías para la separación en filas
 const SizedBox gapH10 = SizedBox(height: 10);
