@@ -22,7 +22,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const LoginAppBar(),
+      appBar: LoginAppBar(false),
       body:  SingleChildScrollView(
         child: Column(
           children: [

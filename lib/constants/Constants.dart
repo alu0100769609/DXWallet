@@ -29,7 +29,9 @@ const Color CUSTOM_LIGHT_PINK = Color.fromRGBO(255, 102, 196, 1);
 const Color CUSTOM_PRIMARY = Color.fromRGBO(199, 0, 255, 1);
 
 /// Routes: Para conexiones internas y externas
-const String LOGIN_URL = 'https://sebt.es/adexe/app_related/register_login/login.php';
+const String LOGIN_URL = 'https://sebt.es/adexe/dxwallet/app/login.php';
+const String REGISTER_URL = 'https://sebt.es/adexe/dxwallet/app/register.php';
+
 const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
 const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";
 
