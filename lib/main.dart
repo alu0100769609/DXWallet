@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'views/SignIn.dart';
 import 'views/SignUp.dart';
+import 'views/VisaList.dart';
 
 void main() {
   runApp(
@@ -11,6 +12,7 @@ void main() {
       routes: {
         '/': (context)=> Login(),
         'Register': (context)=> const Register(),
+        'VisaList': (context)=> const VisaList(),
       },
     )
   );

@@ -67,3 +67,34 @@ Future<Map> sendRegister(Map<String, String> data) async {
   }
   return resp;
 }
+
+/// GET LIST OF VISAS //////////////////////////////////////////////////////////
+Future<Map> getVisaList(String nid) async {
+  final url = Uri.parse(GET_VISAS_URL);
+  final response = await http.post(url, body: {
+    'dni': nid,
+  });
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") { // Si se encontraron datos
+      print("Datos encontrados: ${respuesta["visaList"]}");
+      // Guardamos la respuesta del login
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["visaList"]);
+    }
+    else { // Si no se encontraron datos
+      print("Error, no hay visas: ${respuesta["message"]}");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}

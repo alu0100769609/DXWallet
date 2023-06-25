@@ -27,13 +27,18 @@ const Color CUSTOM_SECONDARY_DARK = Color.fromRGBO(25, 139, 189, 1);
 const Color CUSTOM_LIGHT_PINK = Color.fromRGBO(255, 102, 196, 1);
 // Rosa Oscuro: #C700FF
 const Color CUSTOM_PRIMARY = Color.fromRGBO(199, 0, 255, 1);
+// Gris CLARO: #A6A5A5FF
+const Color DISABLED_COLOR = Color.fromRGBO(166, 165, 165, 1.0);
 
 /// Routes: Para conexiones internas y externas
 const String LOGIN_URL = 'https://sebt.es/adexe/dxwallet/app/login.php';
 const String REGISTER_URL = 'https://sebt.es/adexe/dxwallet/app/register.php';
+const String GET_VISAS_URL = 'https://sebt.es/adexe/dxwallet/app/getListOfVisas.php';
 
 const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
 const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";
+const String BLUE_CREDIT_CARD = "assets/images/TarjetaAzul.png";
+const String RED_CREDIT_CARD = "assets/images/TarjetaRoja.png";
 
 /// RegExp: Para expresiones regulares
 const String REGEXP_VALIDATE_EMAIL = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';

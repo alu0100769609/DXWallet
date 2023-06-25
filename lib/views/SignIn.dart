@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wallet_v2/connection/DniStorage.dart';
 import '/components/appbar/LoginAppBar.dart';
 import '/connection/Connections.dart';
 
@@ -104,7 +105,12 @@ class Login extends StatelessWidget {
                 onPressed: () {
                   sendLogin(_txtEmail.text, _txtPass.text).then((Map response) {
                     if (response["success"] == "1") { // Si el inicio de sesión fue exitoso
-                      Fluttertoast.showToast(msg: "Usuario encontrado: ${response["body"]}");
+                      DniStorage.saveDNI(response["body"][0]["dni_cif"]);
+                      Navigator.pushNamed(context, "VisaList");
+//                      print("Usuario guardado: ${response["body"][0]["dni_cif"]}");
+//                    Fluttertoast.showToast(msg: "Usuario encontrado: ${response["body"]}");
+//                    Fluttertoast.showToast(msg: "Usuario cargado: ${DniStorage.loadDNI()}");
+//                    print("Usuario cargado: ${await DniStorage.loadDNI()}");
                     }
                     else {
                       Fluttertoast.showToast(msg: "${response["body"]}");
