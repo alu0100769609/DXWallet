@@ -6,7 +6,6 @@ import '../components/cards/VisaCard.dart';
 import '../components/appbar/LoginAppBar.dart';
 import '../connection/Connections.dart';
 import '/constants/Constants.dart';
-import '/constants/Strings.dart';
 
 class VisaList extends StatefulWidget {
   const VisaList({Key? key}) : super(key: key);
@@ -16,6 +15,7 @@ class VisaList extends StatefulWidget {
 }
 
 class _VisaListState extends State<VisaList> {
+  final bool debugThis = false; // Para entrar en el modo depuración
   late Future<Map> listOfVisas = Future<Map>.value({});
 
   @override
@@ -46,7 +46,8 @@ class _VisaListState extends State<VisaList> {
             } else if (!snapshot.hasData) {
               return Text('No data available');
             }else { // Retorna datos
-              print("SNAPSHOT DATA SUCCESS: ${snapshot.data!["success"]}");
+              if (DEBUGMODE && debugThis)
+                print("SNAPSHOT DATA SUCCESS: ${snapshot.data!["success"]}");
               if (snapshot.data!["success"] == "0") {
                 return Column(
                   children: [
@@ -54,7 +55,8 @@ class _VisaListState extends State<VisaList> {
                     Center(
                       child: Text(snapshot.data!["body"],
                         style: const TextStyle(
-                            fontSize: SUBTITLE_SIZE),
+                            fontSize: SUBTITLE_SIZE,
+                        color: DISABLED_COLOR),
                       ),
                     ),
                     gapH30,
@@ -90,6 +92,7 @@ class _VisaListState extends State<VisaList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: CUSTOM_PRIMARY_DARK,
         onPressed: () {
           // Acción al presionar el botón
           Fluttertoast.showToast(msg: "Añadir Tarjeta");

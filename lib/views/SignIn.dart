@@ -13,6 +13,8 @@ import '/constants/Strings.dart';
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
+  final bool debugThis = false; // Para entrar en el modo depuración
+
   final String email = "";
   final String password = "";
 
@@ -107,10 +109,8 @@ class Login extends StatelessWidget {
                     if (response["success"] == "1") { // Si el inicio de sesión fue exitoso
                       DniStorage.saveDNI(response["body"][0]["dni_cif"]);
                       Navigator.pushNamed(context, "VisaList");
-//                      print("Usuario guardado: ${response["body"][0]["dni_cif"]}");
-//                    Fluttertoast.showToast(msg: "Usuario encontrado: ${response["body"]}");
-//                    Fluttertoast.showToast(msg: "Usuario cargado: ${DniStorage.loadDNI()}");
-//                    print("Usuario cargado: ${await DniStorage.loadDNI()}");
+                      if (DEBUGMODE && debugThis)
+                        print("Usuario guardado: ${response["body"][0]["dni_cif"]}");
                     }
                     else {
                       Fluttertoast.showToast(msg: "${response["body"]}");

@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 /// Empty boxes: Para separar elementos
 
 /**************** ************** ************** ************** ****************/
+/// DEBUG MODE
+const bool DEBUGMODE = true;
 
 
 /// Colors: Para controlar los colores personalizados
@@ -28,7 +30,12 @@ const Color CUSTOM_LIGHT_PINK = Color.fromRGBO(255, 102, 196, 1);
 // Rosa Oscuro: #C700FF
 const Color CUSTOM_PRIMARY = Color.fromRGBO(199, 0, 255, 1);
 // Gris CLARO: #A6A5A5FF
-const Color DISABLED_COLOR = Color.fromRGBO(166, 165, 165, 1.0);
+const Color DISABLED_COLOR = Color.fromRGBO(166, 165, 165, 1);
+// Verde Válido: #1ABD1AFF
+const Color VALID_GREEN = Color.fromRGBO(26, 189, 26, 1.0);
+// Azul Enlaces: #198BBD
+const Color LINK_BLUE = Color.fromRGBO(25, 139, 189, 1);
+
 
 /// Routes: Para conexiones internas y externas
 const String LOGIN_URL = 'https://sebt.es/adexe/dxwallet/app/login.php';

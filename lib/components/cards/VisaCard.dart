@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_v2/constants/Constants.dart';
+
+import '../../constants/Constants.dart';
+import '../../constants/Strings.dart';
 
 class VisaCard extends StatefulWidget
     implements PreferredSizeWidget {
@@ -84,12 +86,12 @@ class _VisaCard extends State<VisaCard> {
   String _separarDigitos(String string) {
     // Verificar que el string tenga 16 dígitos
     if (string.length != 16) {
-      return "Error al visualizar";
+      return viewError_str;
     }
     // Separar los dígitos de 4 en 4 y agregar un espacio entre ellos
     String nuevoString = "";
     for (int i = 0; i < string.length; i += 4) {
-      nuevoString += string.substring(i, i + 4) + " ";
+      nuevoString += "${string.substring(i, i + 4)} ";
     }
     return nuevoString.trim();
   }

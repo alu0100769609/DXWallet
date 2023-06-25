@@ -21,3 +21,4 @@ const String surname1_str = "Primer apellido";
 const String surname2_str = "Segundo apellido";
 const String name_str = "Nombre";
 const String phone_str = "Teléfono";
+const String viewError_str = "Error al visualizar";

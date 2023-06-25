@@ -9,6 +9,8 @@ import '/constants/Strings.dart';
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
+  final bool debugThis = false; // Para entrar en el modo depuración
+
   @override
   State<Register> createState() => _RegisterState();
 }
@@ -264,7 +266,7 @@ class _RegisterState extends State<Register> {
                   child: const Text(showPolicy_str,
                       style: TextStyle(
                           decoration: TextDecoration.underline,
-                          color: Colors.blue)),
+                          color: LINK_BLUE)),
                   onTap: () => {Fluttertoast.showToast(msg: "Política de privacidad")},
                 ),
               ),
@@ -280,7 +282,7 @@ class _RegisterState extends State<Register> {
                     });
                   },
                   controlAffinity: ListTileControlAffinity.leading,
-                  activeColor: Colors.green,
+                  activeColor: VALID_GREEN,
                 ),
               ),
               /// Acceder

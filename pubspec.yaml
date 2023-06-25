@@ -16,7 +16,7 @@ dependencies:
   fluttertoast: ^8.2.1 # Toast para interacción de usuario
   cupertino_icons: ^1.0.2 # Iconos tipo IOS
   http: ^0.13.5 # Para peticiones html
-  shared_preferences: ^2.0.9
+  shared_preferences: ^2.0.9 # Para acceder a localstorage del móvil
 
 dev_dependencies:
   flutter_test:
