@@ -1,10 +1,11 @@
 const String access_str = "Acceder";
 const String accountData_str = "Datos de cuenta";
-const String addNewVisa_str = "Añadir nueva tarjeta";
+const String newVisa_str = "Nueva tarjeta";
 const String address_str = "Dirección postal";
 const String askNoAccount_str = "¿No tienes cuenta?";
 const String createAccount_str = "Crear cuenta";
-const String currency_str = "Moneda";
+const String create_str = "Crear";
+const String currency_str = "Moneda asociada";
 const String differentPassword_str = "Las contraseñas no coinciden";
 const String email_str = "Correo electrónico";
 const String forgotPassword_str = "¿Has olvidado la contraseña?";

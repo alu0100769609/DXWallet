@@ -282,7 +282,7 @@ class _RegisterState extends State<Register> {
                     });
                   },
                   controlAffinity: ListTileControlAffinity.leading,
-                  activeColor: VALID_GREEN,
+                  activeColor: CUSTOM_SECONDARY_DARK,
                 ),
               ),
               /// Acceder

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../connection/DniStorage.dart';
 import '../components/appbar/LoginAppBar.dart';
 import '../connection/Connections.dart';
 import '/constants/Constants.dart';
@@ -19,31 +20,25 @@ class _AddVisaState extends State<AddVisa> {
   bool? checkedValue = false;
 
   // Instanciamos los controladores para recuperar el texto introducido por el usuario
-  final TextEditingController _txtEmail = TextEditingController();
-  final TextEditingController _txtUsername = TextEditingController();
-  final TextEditingController _txtNID = TextEditingController();
-  final TextEditingController _txtPass = TextEditingController();
-  final TextEditingController _txtPass2 = TextEditingController();
-  final TextEditingController _txtName = TextEditingController();
-  final TextEditingController _txtSurname1 = TextEditingController();
-  final TextEditingController _txtSurname2 = TextEditingController();
-  final TextEditingController _txtAddress = TextEditingController();
-  final TextEditingController _txtPhone = TextEditingController();
+  final TextEditingController _txtVisaName = TextEditingController();
+  final TextEditingController _txtVisaNumber = TextEditingController();
+  final TextEditingController _txtCurrency = TextEditingController();
+
+  late String selectedOption;
 
   bool allDataIsOk() {
-    if (_txtEmail.text.isEmpty ||
-        _txtUsername.text.isEmpty ||
-        _txtNID.text.isEmpty ||
-        _txtPass.text.isEmpty ||
-        _txtPass2.text.isEmpty ||
-        _txtName.text.isEmpty ||
-        _txtSurname1.text.isEmpty ||
-        _txtSurname2.text.isEmpty ||
-        _txtAddress.text.isEmpty ||
-        _txtPhone.text.isEmpty) {
+    if (_txtVisaName.text.isEmpty ||
+        _txtVisaNumber.text.isEmpty ||
+        _txtCurrency.text.isEmpty) {
       return false;
     }
     return true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedOption = ''; // Establecer el elemento inicial seleccionado
   }
 
   @override
@@ -73,25 +68,11 @@ class _AddVisaState extends State<AddVisa> {
                 /// Título Tarjeta
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  child: Text(addNewVisa_str,
+                  child: Text(newVisa_str,
                     style: TextStyle(
                       fontSize: TITLE_SIZE,
                       color: CUSTOM_PRIMARY_DARK,
                     ),
-                  ),
-                ),
-                /// Título Cuenta
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
-                  child: Row(
-                    children: const [
-                      Text(visaData_str,
-                        style: TextStyle(
-                          fontSize: SUBTITLE_SIZE,
-                          color: CUSTOM_PRIMARY_DARK,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 /// Campos de la nueva tarjeta
@@ -103,7 +84,7 @@ class _AddVisaState extends State<AddVisa> {
                       Padding(
                           padding: const EdgeInsets.all(10),
                           child: TextFormField(
-                            controller: _txtUsername,
+                            controller: _txtVisaName,
                             autocorrect: false, // no autocorrige
                             keyboardType: TextInputType.name,
                             decoration: const InputDecoration(
@@ -115,7 +96,9 @@ class _AddVisaState extends State<AddVisa> {
                       Padding( // TODO: Campo no modificable, mostrar el num de tarjeta y ya
                         padding: const EdgeInsets.all(10),
                         child: TextFormField(
-                          controller: _txtEmail,
+                          readOnly: true,
+                          controller: _txtVisaNumber,
+//                          initialValue: "Hola",
                           autocorrect: false, // no autocorrige
                           keyboardType: TextInputType.emailAddress, // para que el teclado aparezca especialmente para introducir un email
                           decoration: const InputDecoration(
@@ -126,35 +109,43 @@ class _AddVisaState extends State<AddVisa> {
                       /// Moneda nueva (lista)
                       Padding(
                           padding: const EdgeInsets.all(10),
-                          child: TextFormField(
-                            controller: _txtPass,
-                            autocorrect: false, // no autocorrige
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: currency_str,
-                            ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: DropdownButton<String>(
+                                  value: selectedOption,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      selectedOption = newValue!;
+                                    });
+                                  },
+                                  items: <String>['', 'Moneda 1 (€)', 'Moneda 2 (\$)']
+                                      .map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
                           )
                       ),
                     ],
                   ),
                 ),
-                /// Acceder
+                gapH30,
+                /// Crear tarjeta
                 ElevatedButton(
                     onPressed: () async {
                       // petición
                       if (checkedValue!) {
                         if (allDataIsOk()) {
                           Map<String, String> data = {
-                            "usuario": _txtUsername.text,
-                            "email": _txtEmail.text,
-                            "password": _txtPass.text,
-                            "nombre": _txtName.text,
-                            "apellido1": _txtSurname1.text,
-                            "apellido2": _txtSurname2.text,
-                            "dni": _txtNID.text,
-                            "direccion": _txtAddress.text,
-                            "telefono": _txtPhone.text
+                            "dni": await DniStorage.loadDNI().toString(),
+                            "nombre_tarjeta": _txtVisaName.text,
+                            "numero_tarjeta": _txtVisaNumber.text,
+                            "moneda": _txtCurrency.text,
                           };
                           sendRegister(data).then((Map response) {
                             if (response["success"] == "1") { // Si se enviaron los datos
@@ -180,7 +171,7 @@ class _AddVisaState extends State<AddVisa> {
                       overlayColor: MaterialStateProperty.all<Color>(CUSTOM_PRIMARY),
                       backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
                     ),
-                    child: const Text(access_str,
+                    child: const Text(create_str,
                         style: TextStyle(color: CUSTOM_BLACK)
                     )
                 ),
