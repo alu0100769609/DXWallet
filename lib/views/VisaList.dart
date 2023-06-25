@@ -95,7 +95,7 @@ class _VisaListState extends State<VisaList> {
         backgroundColor: CUSTOM_PRIMARY_DARK,
         onPressed: () {
           // Acción al presionar el botón
-          Fluttertoast.showToast(msg: "Añadir Tarjeta");
+          Navigator.pushNamed(context, "AddVisa");
         },
         child: const Icon(Icons.add_card_rounded),
       ),
