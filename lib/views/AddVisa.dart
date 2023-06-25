@@ -17,6 +17,7 @@ class AddVisa extends StatefulWidget {
 }
 
 class _AddVisaState extends State<AddVisa> {
+  final bool debugThis = false; // Para entrar en el modo depuración
   bool? checkedValue = false;
 
   // Instanciamos los controladores para recuperar el texto introducido por el usuario
@@ -25,6 +26,7 @@ class _AddVisaState extends State<AddVisa> {
   final TextEditingController _txtCurrency = TextEditingController();
 
   late String selectedOption;
+  List<dynamic> stringOfCurrencies = [];
 
   bool allDataIsOk() {
     if (_txtVisaName.text.isEmpty ||
@@ -35,10 +37,31 @@ class _AddVisaState extends State<AddVisa> {
     return true;
   }
 
+  Future<void> currencies() async {
+    // ...resto de la función...
+    // Realiza las operaciones para obtener las monedas
+    Map<dynamic, dynamic> currencies = await getCurrencies(); // Ejemplo: función para obtener las monedas desde algún lugar
+
+    List<dynamic> currenciesBody = currencies['body'];
+    List<String> resultList = [""];
+    for (var currency in currenciesBody) {
+      String nombre = currency['nombre'];
+      String simbolo = currency['simbolo'];
+      String currencyString = '$nombre ($simbolo)';
+      resultList.add(currencyString);
+    }
+    setState(() {
+      if (DEBUGMODE && debugThis)
+        print("MONEDAS: ${currencies}");
+      stringOfCurrencies = resultList;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     selectedOption = ''; // Establecer el elemento inicial seleccionado
+    currencies();
   }
 
   @override
@@ -119,8 +142,9 @@ class _AddVisaState extends State<AddVisa> {
                                       selectedOption = newValue!;
                                     });
                                   },
-                                  items: <String>['', 'Moneda 1 (€)', 'Moneda 2 (\$)']
-                                      .map<DropdownMenuItem<String>>((String value) {
+                                  items: stringOfCurrencies
+//                                  items: <String>['', 'Moneda 1 (€)', 'Moneda 2 (\$)']
+                                      .map<DropdownMenuItem<String>>((value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Text(value),
@@ -138,6 +162,8 @@ class _AddVisaState extends State<AddVisa> {
                 /// Crear tarjeta
                 ElevatedButton(
                     onPressed: () async {
+                      print("MONEDAS: ${await getCurrencies()}"); // TODO: CONTINUAR DESDE AQUÍ
+
                       // petición
                       if (checkedValue!) {
                         if (allDataIsOk()) {
