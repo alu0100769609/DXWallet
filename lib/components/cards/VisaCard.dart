@@ -46,8 +46,8 @@ class _VisaCard extends State<VisaCard> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: SizedBox(
-                    width: 200,
-                    child: Image.network(widget.imagePath,
+                    width: 150,
+                    child: Image.asset(widget.imagePath,
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -55,7 +55,7 @@ class _VisaCard extends State<VisaCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 250,
+                      width: 150,
                       child: Text(widget.name,
                           style: TextStyle(fontSize: SUBTITLE_SIZE),
                         maxLines: 1,

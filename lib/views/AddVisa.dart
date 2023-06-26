@@ -45,9 +45,10 @@ class _AddVisaState extends State<AddVisa> {
     List<dynamic> currenciesBody = currencies['body'];
     List<String> resultList = [""];
     for (var currency in currenciesBody) {
-      String nombre = currency['nombre'];
+      String name = currency['nombre'];
       String simbolo = currency['simbolo'];
-      String currencyString = '$nombre ($simbolo)';
+      String value = currency['valor'];
+      String currencyString = '$name ($simbolo) - (x$value)';
       resultList.add(currencyString);
     }
     setState(() {
