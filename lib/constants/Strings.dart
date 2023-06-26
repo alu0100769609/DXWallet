@@ -6,6 +6,7 @@ const String askNoAccount_str = "¿No tienes cuenta?";
 const String createAccount_str = "Crear cuenta";
 const String create_str = "Crear";
 const String currency_str = "Moneda asociada";
+const String defaultVisaName_str = "Mi tarjeta";
 const String differentPassword_str = "Las contraseñas no coinciden";
 const String email_str = "Correo electrónico";
 const String forgotPassword_str = "¿Has olvidado la contraseña?";

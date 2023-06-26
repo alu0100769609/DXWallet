@@ -147,3 +147,74 @@ Future<Map> getCurrencies() async {
   }
   return resp;
 }
+
+/// CHECK VISA NUMBER ////////////////////////////////////////////////////////
+/*
+Future<Map> existVisaNumber(String visaNumber) async { // TODO: Está pendiente
+  const bool debugThis = false; // Para entrar en el modo depuración
+  final url = Uri.parse(GET_VISA_NUMBER_URL);
+  print("AQUI ESTAMOS");
+  final response = await http.post(url, body: {
+    'visa_number': visaNumber,
+  });
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    if (DEBUGMODE && debugThis)
+      print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") { // Si se encontraron datos
+      if (DEBUGMODE && debugThis)
+        print("Mal, hay coincidencia encontrada");
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["body"]);
+    }
+    else { // Si no se encontraron datos
+      if (DEBUGMODE && debugThis)
+        print("Bien, no existe el número de visa: ${visaNumber}");
+      resp.update("body", (value) => respuesta["body"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    if (DEBUGMODE && debugThis)
+      print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}
+*/
+
+/// ADD NEW VISA ///////////////////////////////////////////////////////////////
+Future<Map> addNewVisa(Map<String, String> data) async {
+  const bool debugThis = false; // Para entrar en el modo depuración
+  final url = Uri.parse(ADD_NEW_VISA_URL);
+  final response = await http.post(url, body: data);
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    if (DEBUGMODE && debugThis)
+      print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") { // Si se introdujeron los datos
+      if (DEBUGMODE && debugThis)
+        print("Datos enviados correctamente: ${respuesta["message"]}");
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+    else { // Si no se introdujeron los datos
+      if (DEBUGMODE && debugThis)
+        print("Error al enviar los datos: ${respuesta["message"]}");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    if (DEBUGMODE && debugThis)
+      print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -25,8 +27,24 @@ class _AddVisaState extends State<AddVisa> {
   final TextEditingController _txtVisaNumber = TextEditingController();
   final TextEditingController _txtCurrency = TextEditingController();
 
+  late String dni;
+  late Map<dynamic, dynamic> currenciesMap;
+  late String selectedCurrencyId;
   late String selectedOption;
   List<dynamic> stringOfCurrencies = [];
+
+  String getRandVisaNumber() {
+    String visaNumber ='';
+    Random random;
+
+    visaNumber = '4'; // El primer dígito siempre es 4 para las tarjetas Visa
+    random = Random();
+    for (int i = 0; i < 15; i++) {
+      visaNumber += random.nextInt(10)
+          .toString(); // Genera dígitos aleatorios del 0 al 9
+    }
+    return visaNumber;
+  }
 
   bool allDataIsOk() {
     if (_txtVisaName.text.isEmpty ||
@@ -40,9 +58,9 @@ class _AddVisaState extends State<AddVisa> {
   Future<void> currencies() async {
     // ...resto de la función...
     // Realiza las operaciones para obtener las monedas
-    Map<dynamic, dynamic> currencies = await getCurrencies(); // Ejemplo: función para obtener las monedas desde algún lugar
+    currenciesMap = await getCurrencies();
 
-    List<dynamic> currenciesBody = currencies['body'];
+    List<dynamic> currenciesBody = currenciesMap['body'];
     List<String> resultList = [""];
     for (var currency in currenciesBody) {
       String name = currency['nombre'];
@@ -53,8 +71,15 @@ class _AddVisaState extends State<AddVisa> {
     }
     setState(() {
       if (DEBUGMODE && debugThis)
-        print("MONEDAS: ${currencies}");
+        print("MONEDAS: ${currenciesMap}");
       stringOfCurrencies = resultList;
+    });
+  }
+
+  void loadDNI() async {
+    String? loadedDNI = await DniStorage.loadDNI();
+    setState(() {
+      dni = loadedDNI!;
     });
   }
 
@@ -63,6 +88,9 @@ class _AddVisaState extends State<AddVisa> {
     super.initState();
     selectedOption = ''; // Establecer el elemento inicial seleccionado
     currencies();
+    loadDNI();
+
+    _txtVisaNumber.text = getRandVisaNumber();
   }
 
   @override
@@ -163,35 +191,39 @@ class _AddVisaState extends State<AddVisa> {
                 /// Crear tarjeta
                 ElevatedButton(
                     onPressed: () async {
-                      print("MONEDAS: ${await getCurrencies()}"); // TODO: CONTINUAR DESDE AQUÍ
+                      if (DEBUGMODE && debugThis)
+                        print("MONEDA SELECCIONADA: ${selectedOption}");
+                      // Obtiene el ID de la moneda seleccionada
+                      if (selectedOption.isNotEmpty) {
+                        int selectedCurrencyIndex = stringOfCurrencies.indexOf(selectedOption);
+                        selectedCurrencyId = currenciesMap['body'][selectedCurrencyIndex - 1]['id'];
 
-                      // petición
-                      if (checkedValue!) {
-                        if (allDataIsOk()) {
-                          Map<String, String> data = {
-                            "dni": await DniStorage.loadDNI().toString(),
-                            "nombre_tarjeta": _txtVisaName.text,
-                            "numero_tarjeta": _txtVisaNumber.text,
-                            "moneda": _txtCurrency.text,
-                          };
-                          sendRegister(data).then((Map response) {
-                            if (response["success"] == "1") { // Si se enviaron los datos
-                              Fluttertoast.showToast(msg: "${response["body"]}");
-                              Navigator.pushReplacementNamed(context, "/");
-                            }
-                            else {
-                              Fluttertoast.showToast(msg: "Respuesta: ${response["body"]}");
-                            }
-                          });
-                          Fluttertoast.showToast(msg: "Registro completo");
-                        }
-                        else {
-                          Fluttertoast.showToast(msg: "Rellena todos los campos para continuar");
-                        }
-                      }
-                      else {
-                        Fluttertoast.showToast(
-                            msg: "Debes aceptar las políticas de privacidad");
+                        // Muestra el ID de la moneda seleccionada
+                        if (DEBUGMODE && debugThis)
+                          print("ID DE MONEDA SELECCIONADA: ${selectedCurrencyId}");
+
+                        Map<String, String> data = {
+                          "dni": dni,
+                          "nombre_tarjeta": _txtVisaName.text.isEmpty ? defaultVisaName_str : _txtVisaName.text,
+                          "numero_tarjeta": _txtVisaNumber.text,
+                          "id_moneda": selectedCurrencyId,
+                        };
+                        if (DEBUGMODE && debugThis)
+                          print("DATOS A ENVIAR: ${data}");
+                        addNewVisa(data).then((Map response) {
+                          if (response["success"] == "1") { // Si se enviaron los datos
+                            Fluttertoast.showToast(msg: "${response["body"]}");
+                            Navigator.pushReplacementNamed(context, "VisaList");
+                          }
+                          else {
+                            Fluttertoast.showToast(msg: "Respuesta: ${response["body"]}");
+                          }
+                        });
+                        Fluttertoast.showToast(msg: "Tarjeta creada");
+                      } else {
+                        if (DEBUGMODE && debugThis)
+                          print("NO SE HA SELECCIONADO NINGUNA MONEDA");
+                        Fluttertoast.showToast(msg: "No se ha seleccionado ninguna moneda");
                       }
                     },
                     style: ButtonStyle(
