@@ -218,3 +218,39 @@ Future<Map> addNewVisa(Map<String, String> data) async {
   }
   return resp;
 }
+
+/// GET VISA DATA //////////////////////////////////////////////////////////////
+Future<Map<String, dynamic>> getVisaData(String visaNumber) async {
+  const bool debugThis = false; // Para entrar en el modo depuración
+  final url = Uri.parse(GET_VISA_DATA_URL);
+  final response = await http.post(url, body: {
+    'visa_number': visaNumber,
+  });
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    if (DEBUGMODE && debugThis)
+      print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") { // Si se encontraron datos
+      if (DEBUGMODE && debugThis)
+        print("Datos encontrados: ${respuesta["visa"]}");
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["visa"]);
+    }
+    else { // Si no se encontraron datos
+      if (DEBUGMODE && debugThis)
+        print("Error, no hay visa: ${respuesta["message"]}");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    if (DEBUGMODE && debugThis)
+      print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}
+

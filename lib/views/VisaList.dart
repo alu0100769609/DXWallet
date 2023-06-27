@@ -74,14 +74,14 @@ class _VisaListState extends State<VisaList> {
                   children: List.generate(cardCount, (index) {
                     Map<dynamic, dynamic> visaData = visaList[index];
                     return VisaCard(
-                      id: 5,
                       imagePath: BLUE_CREDIT_CARD,
                       name: visaData["nombre"],
                       number: visaData["numero_tarjeta"],
                       amount:
                           "${visaData["saldo"].toString()} ${visaData["moneda"]}",
                       onTap: () {
-                        Fluttertoast.showToast(msg: "Tarjeta ${index + 1}");
+                        Navigator.pushNamed(context, "VisaInfo", arguments: {"visaNumber" : visaData["numero_tarjeta"]});
+//                        Fluttertoast.showToast(msg: "Tarjeta ${index + 1}");
                       },
                     );
                   }),

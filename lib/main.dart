@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_v2/views/VisaInfo.dart';
 
 import 'constants/Constants.dart';
 import 'views/AddVisa.dart';
@@ -17,6 +18,7 @@ void main() {
         'Register': (context)=> const Register(),
         'VisaList': (context)=> const VisaList(),
         'AddVisa': (context)=> const AddVisa(),
+        'VisaInfo': (context)=> const VisaInfo(),
       },
     )
   );

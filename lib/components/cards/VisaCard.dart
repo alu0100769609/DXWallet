@@ -5,7 +5,6 @@ import '../../constants/Strings.dart';
 
 class VisaCard extends StatefulWidget
     implements PreferredSizeWidget {
-  final int id;
   final String imagePath;
   final String name;
   final String number;
@@ -13,7 +12,6 @@ class VisaCard extends StatefulWidget
   final Function? onTap;
   const VisaCard(
       {Key? key,
-        required this.id,
         required this.imagePath,
         required this.name,
         required this.number,

@@ -108,7 +108,7 @@ class Login extends StatelessWidget {
                   sendLogin(_txtEmail.text, _txtPass.text).then((Map response) {
                     if (response["success"] == "1") { // Si el inicio de sesión fue exitoso
                       DniStorage.saveDNI(response["body"][0]["dni_cif"]);
-                      Navigator.pushNamed(context, "VisaList");
+                      Navigator.pushReplacementNamed(context, "VisaList");
                       if (DEBUGMODE && debugThis)
                         print("Usuario guardado: ${response["body"][0]["dni_cif"]}");
                     }

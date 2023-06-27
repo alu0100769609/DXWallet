@@ -16,6 +16,7 @@ const String login_str = "Iniciar sesión";
 const String name_str = "Nombre";
 const String nid_str = "DNI";
 const String password_str = "Contraseña";
+const String pay_str = "Pago con tarjeta";
 const String personalData_str = "Datos personales";
 const String phone_str = "Teléfono";
 const String readAndAcceptPolicy_str = "He leído y acepto la política de privacidad y protección de datos";
