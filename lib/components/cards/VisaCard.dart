@@ -41,6 +41,7 @@ class _VisaCard extends State<VisaCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                /// Lado izquierdo (imagen)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: SizedBox(
@@ -49,9 +50,11 @@ class _VisaCard extends State<VisaCard> {
                         fit: BoxFit.cover),
                   ),
                 ),
+                /// Lado derecho (Información)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Nombre de la tarjeta
                     Container(
                       width: 150,
                       child: Text(widget.name,
@@ -61,12 +64,14 @@ class _VisaCard extends State<VisaCard> {
                       ),
                     ),
                     gapH10,
+                    /// Número de tarjeta
                     SizedBox(
                       child: Text(_separarDigitos(widget.number),
                           style: TextStyle(fontSize: NORMAL_SIZE)
                       ),
                     ),
                     gapH10,
+                    /// Cantidad (saldo)
                     SizedBox(
                       child: Text(widget.amount,
                           style: TextStyle(fontSize: NORMAL_SIZE)

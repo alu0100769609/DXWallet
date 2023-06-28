@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wallet_v2/components/cards/MovementCard.dart';
 import 'package:wallet_v2/components/cards/VisaCard.dart';
 import 'package:wallet_v2/connection/Connections.dart';
 import 'package:wallet_v2/constants/Constants.dart';
@@ -60,52 +61,50 @@ class VisaInfo extends StatelessWidget {
               print("VISADATA: ${visaData}");
             return Scaffold(
               appBar: LoginAppBar(),
-              body: Column(
-                children: [
-                  VisaCard(
-                    imagePath: BLUE_CREDIT_CARD,
-                    name: visaData["nombre"],
-                    number: visaData["numero_tarjeta"],
-                    amount: "${visaData["saldo"].toString()} ${visaData["moneda"]}",
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Fluttertoast.showToast(msg: "Abrir cámara");
-                        },
-                        style: ButtonStyle(
-                          overlayColor: MaterialStateProperty.all<Color>(CUSTOM_PRIMARY),
-                          backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
-                          minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 48)),
-                        ),
-                        child: const Text(pay_str,
-                            style: TextStyle(color: CUSTOM_BLACK)
-                        )
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    VisaCard(
+                      imagePath: BLUE_CREDIT_CARD,
+                      name: visaData["nombre"],
+                      number: visaData["numero_tarjeta"],
+                      amount: "${visaData["saldo"].toString()} ${visaData["moneda"]}",
                     ),
-                  ),
-                  gapH30,
-                  GestureDetector(
-                    onTap: ()=> {
-                      Fluttertoast.showToast(msg: "1")
-                    },
-                      child: Text("Información de pago con tarjeta 1")
-                  ),
-                  gapH30,
-                  GestureDetector(
-                      onTap: ()=> {
-                      Fluttertoast.showToast(msg: "2")
-                  },
-                      child: Text("Información de pago con tarjeta 2")
-                  ),
-                  gapH30,
-                  GestureDetector(
-                      onTap: ()=> {
-                      Fluttertoast.showToast(msg: "3")
-                  },
-                      child: Text("Información de pago con tarjeta 3")
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Fluttertoast.showToast(msg: "Abrir cámara");
+                          },
+                          style: ButtonStyle(
+                            overlayColor: MaterialStateProperty.all<Color>(CUSTOM_PRIMARY),
+                            backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
+                            minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 48)),
+                          ),
+                          child: const Text(pay_str,
+                              style: TextStyle(color: CUSTOM_BLACK)
+                          )
+                      ),
+                    ),
+                    gapH30,
+                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
+                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
+                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
+                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
+                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
+                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
+                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
+                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
+                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
+                  ],
+                ),
               ),
               floatingActionButton: FloatingActionButton(
                 backgroundColor: VALID_GREEN,
