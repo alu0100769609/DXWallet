@@ -46,6 +46,7 @@ const String GET_CURRENCIES_URL = 'https://sebt.es/adexe/dxwallet/app/getCurrenc
 //const String GET_VISA_NUMBER_URL = 'https://sebt.es/adexe/dxwallet/app/getVisaNumber.php';
 const String ADD_NEW_VISA_URL = 'https://sebt.es/adexe/dxwallet/app/addNewVisa.php';
 const String GET_VISA_DATA_URL = 'https://sebt.es/adexe/dxwallet/app/getVisa.php';
+const String GET_MOVEMENTS_URL = 'https://sebt.es/adexe/dxwallet/app/getListOfMovements.php';
 
 const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
 const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";

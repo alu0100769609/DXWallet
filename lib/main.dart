@@ -19,7 +19,7 @@ void main() {
         'Register': (context)=> const Register(),
         'VisaList': (context)=> const VisaList(),
         'AddVisa': (context)=> const AddVisa(),
-        'VisaInfo': (context)=> const VisaInfo(),
+        'VisaInfo': (context)=> VisaInfo(),
         'MovementCard': (context)=> const MovementCard(),
       },
     )
