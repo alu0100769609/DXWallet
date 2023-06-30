@@ -54,7 +54,13 @@ class _VisaInfoState extends State<VisaInfo> {
       builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Mientras se carga, mostramos un indicador de carga
-          return CircularProgressIndicator();
+          return const Center(
+            child: SizedBox(
+              width: 40.0,
+              height: 40.0,
+              child: CircularProgressIndicator(),
+            ),
+          );
         } else if (snapshot.hasError) {
           // Si ocurre un error, mostramos un mensaje de error
           return Text('Error: ${snapshot.error}');
@@ -118,7 +124,13 @@ class _VisaInfoState extends State<VisaInfo> {
                       future: listOfMovements,
                       builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
+                          return const Center(
+                            child: SizedBox(
+                              width: 40.0,
+                              height: 40.0,
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
                         } else if (snapshot.hasError) {
                           return Text('Errores: ${snapshot.error}');
                         } else if (!snapshot.hasData) {

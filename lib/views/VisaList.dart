@@ -42,7 +42,13 @@ class _VisaListState extends State<VisaList> {
           future: listOfVisas,
           builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return Center(
+                child: SizedBox(
+                  width: 40.0,
+                  height: 40.0,
+                  child: CircularProgressIndicator(),
+                ),
+              );
             } else if (snapshot.hasError) {
               return Text('Errores: ${snapshot.error}');
             } else if (!snapshot.hasData) {
