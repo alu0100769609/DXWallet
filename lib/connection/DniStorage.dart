@@ -14,4 +14,10 @@ class DniStorage {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(_kDniKey);
   }
+
+  // Función para eliminar el valor del DNI en SharedPreferences
+  static Future<void> removeDNI() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_kDniKey);
+  }
 }

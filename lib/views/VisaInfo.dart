@@ -35,9 +35,6 @@ class _VisaInfoState extends State<VisaInfo> {
     });
   }
   void loadVisaList(String visa) async {
-//    String? loadedDNI = await DniStorage.loadDNI();
-//    String? loadedDNI = '11111111A';
-    print("DNI: $loadedDNI");
     setState(() {
       listOfMovements = getMovementList(loadedDNI!, visa);
     });
@@ -45,15 +42,12 @@ class _VisaInfoState extends State<VisaInfo> {
 
   @override
   Widget build(BuildContext context) {
-//                                visa = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final Map<String, dynamic>? visa = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final String _visa = visa!['visaNumber'];
-//    final String _visa = '1234123412341234';
     loadVisaList(_visa);
 
     if (DEBUGMODE && debugThis)
       print("VISA: ${_visa}");
-
 
     return FutureBuilder<Map<String, dynamic>>(
       future: getVisaData(_visa),
@@ -120,19 +114,6 @@ class _VisaInfoState extends State<VisaInfo> {
                       ),
                     ),
                     gapH30,
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
                     FutureBuilder<Map>(
                       future: listOfMovements,
                       builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
@@ -181,29 +162,6 @@ class _VisaInfoState extends State<VisaInfo> {
                         }
                       },
                     ),
-
-
-
-
-
-/*
-                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
-                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
-                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
-                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
-                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
-                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
-                    MovementCard(shopName: "La Marquesa Outflet", amount: "-25€", movementDate: "19/06/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "+18€", movementDate: "26/04/2023"),
-                    MovementCard(shopName: "Compras Locas", amount: "-66€", movementDate: "24/04/2023"),
-                    MovementCard(shopName: "Taller Juan Molina", amount: "-701.69€", movementDate: "11/02/2023"),
-*/
                   ],
                 ),
               ),

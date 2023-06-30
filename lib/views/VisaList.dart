@@ -4,6 +4,7 @@ import 'package:wallet_v2/connection/DniStorage.dart';
 
 import '../components/cards/VisaCard.dart';
 import '../components/appbar/LoginAppBar.dart';
+import '../components/drawers/CustomDrawer.dart';
 import '../connection/Connections.dart';
 import '/constants/Constants.dart';
 
@@ -35,6 +36,7 @@ class _VisaListState extends State<VisaList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: LoginAppBar(),
+      drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: FutureBuilder<Map>(
           future: listOfVisas,
