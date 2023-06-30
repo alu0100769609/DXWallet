@@ -3,8 +3,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wallet_v2/components/alertdialogs/DisconnectAlertDialog.dart';
 import 'package:wallet_v2/constants/Constants.dart';
 
+import '../../constants/Strings.dart';
+
 class CustomDrawer extends Drawer {
-  const CustomDrawer({Key? key}) : super(key: key);
+  CustomDrawer({Key? key}) : super(key: key);
+
+  bool showNotifications = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +36,20 @@ class CustomDrawer extends Drawer {
               Fluttertoast.showToast(msg: "Perfil");
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.notifications, color: CUSTOM_PRIMARY_DARK),
-            title: const Text('Notificaciones'),
-            onTap: () {
-              Fluttertoast.showToast(msg: "Notificaciones");
+          StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return ListTile(
+                leading: Icon(
+                  showNotifications ? Icons.notifications_active : Icons.notifications_off,
+                  color: CUSTOM_PRIMARY_DARK,
+                ),
+                title: const Text(notifications_str),
+                onTap: () {
+                  setState(() {
+                    showNotifications = !showNotifications;
+                  });
+                },
+              );
             },
           ),
           const Divider(
@@ -69,7 +82,7 @@ class CustomDrawer extends Drawer {
           ),
           ListTile(
             leading: const Icon(Icons.power_settings_new_outlined, color: CUSTOM_PRIMARY_DARK),
-            title: const Text('Desconectarse'),
+            title: const Text(disconnect_str),
             onTap: () async {
               return await showDialog(
                 context: context,
