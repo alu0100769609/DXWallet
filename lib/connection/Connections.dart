@@ -256,7 +256,7 @@ Future<Map<String, dynamic>> getVisaData(String visaNumber) async {
 
 /// GET LIST OF MOVEMENTS///////////////////////////////////////////////////////
 Future<Map> getMovementList(String nid, String visaNumber) async {
-  const bool debugThis = true; // Para entrar en el modo depuración
+  const bool debugThis = false; // Para entrar en el modo depuración
   final url = Uri.parse(GET_MOVEMENTS_URL);
   final response = await http.post(url, body: {
     'dni': nid,

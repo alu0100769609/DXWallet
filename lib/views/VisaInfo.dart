@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wallet_v2/components/alertdialogs/IncreaseBalanceAlertDialog.dart';
 import 'package:wallet_v2/components/cards/MovementCard.dart';
 import 'package:wallet_v2/components/cards/VisaCard.dart';
 import 'package:wallet_v2/connection/Connections.dart';
@@ -179,9 +180,13 @@ class _VisaInfoState extends State<VisaInfo> {
               ),
               floatingActionButton: FloatingActionButton(
                 backgroundColor: VALID_GREEN,
-                onPressed: () {
-                  // Acción al presionar el botón
-                  Fluttertoast.showToast(msg: "Aumentar saldo");
+                onPressed: () async {
+                  return await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return IncreaseBalanceAlertDialog();
+                      }
+                  );
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
