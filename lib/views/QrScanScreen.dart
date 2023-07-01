@@ -40,7 +40,7 @@ class _QRScanScreenState extends State<QRScanScreen> {
     });
     controller.scannedDataStream.listen((scanData) {
       // Aquí obtienes los datos del código QR escaneado
-      print(scanData.code);
+      print("DATAAAAA: ${scanData.code}");
       // Puedes realizar alguna acción con los datos aquí
     });
   }
