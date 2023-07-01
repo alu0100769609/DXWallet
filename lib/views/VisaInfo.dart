@@ -20,6 +20,7 @@ class VisaInfo extends StatefulWidget {
 class _VisaInfoState extends State<VisaInfo> {
 
   String? loadedDNI = "";
+  String _visa = "";
   final bool debugThis = false;
  // Para entrar en el modo depuración
   late Future<Map> listOfMovements = Future<Map>.value({});
@@ -44,7 +45,7 @@ class _VisaInfoState extends State<VisaInfo> {
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic>? visa = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    final String _visa = visa!['visaNumber'];
+    _visa = visa!['visaNumber'];
     loadVisaList(_visa);
 
     if (DEBUGMODE && debugThis)
@@ -184,7 +185,7 @@ class _VisaInfoState extends State<VisaInfo> {
                   return await showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return IncreaseBalanceAlertDialog();
+                        return IncreaseBalanceAlertDialog(visaNumber: _visa);
                       }
                   );
                 },

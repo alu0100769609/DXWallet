@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_v2/connection/Connections.dart';
 import 'package:wallet_v2/connection/DniStorage.dart';
 
 import '../../constants/Strings.dart';
 import 'BankConnectAlertDialog.dart';
 
 class IncreaseBalanceAlertDialog extends AlertDialog {
+  IncreaseBalanceAlertDialog({required this.visaNumber});
+
+  final String visaNumber;
   TextEditingController _amountController = TextEditingController();
+  late Future<Map> resp = Future<Map>.value({});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +47,21 @@ class IncreaseBalanceAlertDialog extends AlertDialog {
           ),
           child: const Text(accept_str),
           onPressed: () async {
+            String stringResponse = "";
+            Map<dynamic, dynamic> responseMap = await increaseAmount(visaNumber, _amountController.text?? "0");
+
+            if (responseMap != null) {
+              if (responseMap["success"] == "0") {
+                stringResponse = "Proceso cancelado.\n\n${responseMap["body"]}";
+              }
+              else {
+                stringResponse = "Conectando con el banco... En breve tendrá su dinero disponible";
+              }
+            }
             return await showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return BankConnectAlertDialog();
+                  return BankConnectAlertDialog(message: stringResponse);
                 }
             );
           },

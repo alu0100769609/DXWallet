@@ -6,8 +6,9 @@ import '../../constants/Strings.dart';
 
 class BankConnectAlertDialog extends StatefulWidget {
   final int duration = 5000;
+  final String message;
 
-  const BankConnectAlertDialog({super.key});
+  const BankConnectAlertDialog({Key? key, required this.message}) : super(key: key);
 
   @override
   _BankConnectAlertDialogState createState() => _BankConnectAlertDialogState();
@@ -25,9 +26,10 @@ class _BankConnectAlertDialogState extends State<BankConnectAlertDialog> {
         height: 120,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(bankConnect_str),
-            Center(
+          children: [
+            Text(widget.message, textAlign: TextAlign.center),
+//            Text(bankConnect_str),
+            const Center(
               child: SizedBox(
                 width: 40.0,
                 height: 40.0,
