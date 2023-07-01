@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_v2/components/cards/MovementCard.dart';
+import 'package:wallet_v2/views/QrScanScreen.dart';
 import 'package:wallet_v2/views/VisaInfo.dart';
 
 import 'constants/Constants.dart';
@@ -20,7 +21,7 @@ void main() {
         'VisaList': (context)=> const VisaList(),
         'AddVisa': (context)=> const AddVisa(),
         'VisaInfo': (context)=> VisaInfo(),
-        'MovementCard': (context)=> const MovementCard(),
+        'QrScanScreen': (context)=> QRScanScreen(),
       },
     )
   );
