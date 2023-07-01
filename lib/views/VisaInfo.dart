@@ -109,7 +109,7 @@ class _VisaInfoState extends State<VisaInfo> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "QrScanScreen");
+//                            Navigator.pushNamed(context, "QrScanScreen");
 //                            Fluttertoast.showToast(msg: "Abrir cámara");
                           },
                           style: ButtonStyle(
