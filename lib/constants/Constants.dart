@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 /**************** ************** ************** ************** ****************/
 /// DEBUG MODE
-const bool DEBUGMODE = true;
+const bool DEBUGMODE = false;
 
 
 /// Colors: Para controlar los colores personalizados

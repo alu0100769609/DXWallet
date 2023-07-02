@@ -27,6 +27,7 @@ class _VisaInfoState extends State<VisaInfo> {
  // Para entrar en el modo depuración
   late Future<Map> listOfMovements = Future<Map>.value({});
   String _scanBarcode = defaultText_str;
+  late String moneyIcon;
 
   @override
   void initState() {
@@ -169,6 +170,7 @@ class _VisaInfoState extends State<VisaInfo> {
           }
           else {
             final Map<String, dynamic> visaData = snapshot.data!["body"][0];
+            moneyIcon = visaData["moneda"];
             if (DEBUGMODE && debugThis)
               print("VISADATA: ${visaData}");
             return Scaffold(
@@ -195,8 +197,15 @@ class _VisaInfoState extends State<VisaInfo> {
                             backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
                             minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 48)),
                           ),
-                          child: const Text(pay_str,
-                              style: TextStyle(color: CUSTOM_BLACK)
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(Icons.qr_code_scanner,size: TITLE_SIZE),
+                              gapW10,
+                              Text(pay_str,
+                                  style: TextStyle(color: Colors.white,fontSize: TITLE_SIZE)
+                              ),
+                            ],
                           )
                       ),
                     ),
@@ -269,10 +278,10 @@ class _VisaInfoState extends State<VisaInfo> {
                   );
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(moneyIcon, style: TextStyle(fontSize: SUBTITLE_SIZE)),
                     Icon(Icons.add),
-                    Icon(Icons.attach_money),
                   ],
                 ),
               ),

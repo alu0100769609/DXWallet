@@ -82,6 +82,7 @@ class _MovementCard extends State<MovementCard> {
                                 child: Text(widget.amount,
                                   style: TextStyle(
                                     fontSize: SUBTITLE_SIZE,
+                                    fontWeight: FontWeight.bold,
                                     color: (widget.amount.toString().contains("-")) ? Colors.red : VALID_GREEN
                                   ),
                                   maxLines: 1,
