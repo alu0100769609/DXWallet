@@ -55,10 +55,13 @@ class _VisaInfoState extends State<VisaInfo> {
 //      Fluttertoast.showToast(msg: "Escaneo: $barcodeScanRes");
       // Scan debe devolver Visa comercio e importe.
       Map<String, String> scan = getValues(barcodeScanRes);
+      print("Scan: $scan");
       // comprobamos que getValues no dio error
-      if (scan["success"] == 1) {
+      if (scan["success"] == "1") {
+        print("Valores SUCCESS");
         //Tenemos visa de tienda e importe. Hacemos el pago enviando además nuestra visa
         Map<dynamic, dynamic> responseMap = await pay(_visa, scan["visaNumber"]!, scan["amount"]!);
+        print("RESPONSE: $responseMap");
         if (responseMap != null) {
           if (responseMap["success"] == "0") {
             Fluttertoast.showToast(msg: "Proceso cancelado.\n\n${responseMap["body"]}");
@@ -88,10 +91,12 @@ class _VisaInfoState extends State<VisaInfo> {
   }
 
   Map<String, String> getValues(String barcodeScanRes) {
-    List<String> values = barcodeScanRes.split(' ');
+    List<String> values = barcodeScanRes.split('\n');
     Map<String, String> data;
     String visaNumber;
     String amount;
+
+    print("VALUES: $values");
 
     if (values.length != 2) {
       // Manejar un error si la cadena no contiene exactamente dos valores separados por un espacio
