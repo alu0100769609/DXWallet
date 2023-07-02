@@ -14,14 +14,13 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: DEBUGMODE,
       title: "Named routes",
-      initialRoute: "QrScanner2",
+      initialRoute: "/",
       routes: {
         '/': (context)=> Login(),
         'Register': (context)=> const Register(),
         'VisaList': (context)=> const VisaList(),
         'AddVisa': (context)=> const AddVisa(),
         'VisaInfo': (context)=> VisaInfo(),
-//        'QrScanScreen': (context)=> QRScanScreen(),
         'QrScanner2': (context)=> QrScanner2(),
       },
     )

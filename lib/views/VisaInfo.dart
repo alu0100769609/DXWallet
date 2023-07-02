@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wallet_v2/components/alertdialogs/IncreaseBalanceAlertDialog.dart';
 import 'package:wallet_v2/components/cards/MovementCard.dart';
 import 'package:wallet_v2/components/cards/VisaCard.dart';
 import 'package:wallet_v2/connection/Connections.dart';
 import 'package:wallet_v2/constants/Constants.dart';
+import 'package:wallet_v2/views/QrScanner2.dart';
 
 import '../components/appbar/LoginAppBar.dart';
 import '../connection/DniStorage.dart';
@@ -24,6 +27,7 @@ class _VisaInfoState extends State<VisaInfo> {
   final bool debugThis = false;
  // Para entrar en el modo depuración
   late Future<Map> listOfMovements = Future<Map>.value({});
+  String _scanBarcode = defaultText_str;
 
   @override
   void initState() {
@@ -39,6 +43,27 @@ class _VisaInfoState extends State<VisaInfo> {
   void loadVisaList(String visa) async {
     setState(() {
       listOfMovements = getMovementList(loadedDNI!, visa);
+    });
+  }
+
+  Future<void> scanQR() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
     });
   }
 
@@ -109,6 +134,7 @@ class _VisaInfoState extends State<VisaInfo> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
                           onPressed: () {
+                            scanQR();
 //                            Navigator.pushNamed(context, "QrScanScreen");
 //                            Fluttertoast.showToast(msg: "Abrir cámara");
                           },
