@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wallet_v2/components/alertdialogs/IncreaseBalanceAlertDialog.dart';
-import 'package:wallet_v2/components/cards/MovementCard.dart';
-import 'package:wallet_v2/components/cards/VisaCard.dart';
-import 'package:wallet_v2/connection/Connections.dart';
-import 'package:wallet_v2/constants/Constants.dart';
-import 'package:wallet_v2/views/QrScanner2.dart';
 
+import '../components/alertdialogs/IncreaseBalanceAlertDialog.dart';
 import '../components/appbar/LoginAppBar.dart';
+import '../components/cards/MovementCard.dart';
+import '../components/cards/VisaCard.dart';
+import '../connection/Connections.dart';
 import '../connection/DniStorage.dart';
+import '../constants/Constants.dart';
 import '../constants/Strings.dart';
 
 class VisaInfo extends StatefulWidget {
@@ -46,12 +45,14 @@ class _VisaInfoState extends State<VisaInfo> {
     });
   }
 
+  // Función que abre barcodeScan e introduce el valor en _scanBarcode
   Future<void> scanQR() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
+      Fluttertoast.showToast(msg: "Escaneo: $barcodeScanRes");
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
@@ -60,8 +61,9 @@ class _VisaInfoState extends State<VisaInfo> {
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted) return;
-
+    if (!mounted) {
+      return;
+    }
     setState(() {
       _scanBarcode = barcodeScanRes;
     });
