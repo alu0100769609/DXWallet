@@ -11,7 +11,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: DEBUGMODE,
-      title: "Named routes",
+      title: "DX-Wallet APP",
       initialRoute: "/",
       routes: {
         '/': (context)=> Login(),
