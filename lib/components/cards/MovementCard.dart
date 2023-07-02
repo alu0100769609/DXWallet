@@ -13,7 +13,7 @@ class MovementCard extends StatefulWidget
   const MovementCard({
     Key? key,
     this.shopName = 'Shop Name', // Valor por defecto para shopName
-    this.movementDate = 'Ticket Number', // Valor por defecto para ticketNumber
+    this.movementDate = 'Movement Date', // Valor por defecto para movementDate
     this.amount = 'Amount', // Valor por defecto para amount
   }) : super(key: key);
 

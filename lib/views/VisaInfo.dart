@@ -52,8 +52,26 @@ class _VisaInfoState extends State<VisaInfo> {
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
-      Fluttertoast.showToast(msg: "Escaneo: $barcodeScanRes");
-      print(barcodeScanRes);
+//      Fluttertoast.showToast(msg: "Escaneo: $barcodeScanRes");
+      // Scan debe devolver Visa comercio e importe.
+      Map<String, String> scan = getValues(barcodeScanRes);
+      // comprobamos que getValues no dio error
+      if (scan["success"] == 1) {
+        //Tenemos visa de tienda e importe. Hacemos el pago enviando además nuestra visa
+        Map<dynamic, dynamic> responseMap = await pay(_visa, scan["visaNumber"]!, scan["amount"]!);
+        if (responseMap != null) {
+          if (responseMap["success"] == "0") {
+            Fluttertoast.showToast(msg: "Proceso cancelado.\n\n${responseMap["body"]}");
+          }
+          else {
+            Fluttertoast.showToast(msg: "${responseMap["body"]}");
+          }
+        }
+      }
+      else {
+        Fluttertoast.showToast(msg: "${scan["message"]}");
+      }
+//      print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -67,6 +85,33 @@ class _VisaInfoState extends State<VisaInfo> {
     setState(() {
       _scanBarcode = barcodeScanRes;
     });
+  }
+
+  Map<String, String> getValues(String barcodeScanRes) {
+    List<String> values = barcodeScanRes.split(' ');
+    Map<String, String> data;
+    String visaNumber;
+    String amount;
+
+    if (values.length != 2) {
+      // Manejar un error si la cadena no contiene exactamente dos valores separados por un espacio
+      data = {
+        'success': "0",
+        'message': "El QR no tiene el formato requerido",
+      };
+    }
+    else {
+      visaNumber = values[0];
+      amount = values[1];
+      // Aquí podríamos comprobar que visaNumber y amount son lo que deben ser..
+      // De momento nos fiamos y omitimos por ahora.
+      data = {
+        'success': "1",
+        'visaNumber': visaNumber,
+        'amount': amount,
+      };
+    }
+    return data;
   }
 
   @override
