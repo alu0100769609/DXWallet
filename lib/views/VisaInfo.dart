@@ -270,6 +270,7 @@ class _VisaInfoState extends State<VisaInfo> {
                                 return MovementCard(
                                   shopName: movementData["nombre_tienda"],
                                   amount: movementData["cantidad"],
+                                  currency: moneyIcon,
                                   movementDate: movementData["fecha"],
                                   ticketURL: movementData["ticketURL"],
                                 );

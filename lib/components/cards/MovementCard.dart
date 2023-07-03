@@ -10,12 +10,14 @@ class MovementCard extends StatefulWidget
   final String shopName;
   final String movementDate;
   final String amount;
+  final String currency;
   final String ticketURL;
   const MovementCard({
     Key? key,
     this.shopName = 'Shop Name', // Valor por defecto para shopName
     this.movementDate = 'Movement Date', // Valor por defecto para movementDate
     this.amount = 'Amount', // Valor por defecto para amount
+    this.currency = 'ç', // Valor por defecto para amount
     this.ticketURL = '', // Valor por defecto para ticketNumber
   }) : super(key: key);
 
@@ -81,7 +83,7 @@ class _MovementCard extends State<MovementCard> {
                               padding: const EdgeInsets.only(right: 10),
                               child: Container(
                                 alignment: Alignment.centerRight,
-                                child: Text(widget.amount,
+                                child: Text("${widget.amount} ${widget.currency}",
                                   style: TextStyle(
                                     fontSize: SUBTITLE_SIZE,
                                     fontWeight: FontWeight.bold,
