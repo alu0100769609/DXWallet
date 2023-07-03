@@ -263,6 +263,7 @@ class _VisaInfoState extends State<VisaInfo> {
                           }
                           else {
                             List<dynamic> movementList = snapshot.data!["body"];
+                            movementList.sort((a, b) => b["fecha"].compareTo(a["fecha"]));
                             int cardCount = movementList.length;
                             return Column(
                               children: List.generate(cardCount, (index) {

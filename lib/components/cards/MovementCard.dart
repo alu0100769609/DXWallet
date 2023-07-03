@@ -99,12 +99,12 @@ class _MovementCard extends State<MovementCard> {
                       /// Submenú de descarga
                       (showDetails) ?
                       DetailsCard(
-                        onTapDownload: () {
+/*                        onTapDownload: () {
                           // Aquí debería descargar el ticket asociado
                           // TODO
                         Fluttertoast.showToast(msg: "Descargar ticket: ${widget.shopName}");
                         },
-                        onTapView: () {
+*/                        onTapView: () {
                           // Aquí debería mostrar el ticket asociado
                           // TODO: En vez de url, pasarle la variable ruta
                           launchUrl(Uri.parse(widget.ticketURL));

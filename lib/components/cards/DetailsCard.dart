@@ -36,7 +36,9 @@ class _DetailsCard extends State<DetailsCard> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 /// Lado izquierdo (Descargar)
-                Expanded(
+
+/// Código preparado para la descarga del documento en un futuro)
+/*                Expanded(
                   child: GestureDetector(
                     onTap: ()                 {
                       setState(() {
@@ -66,7 +68,7 @@ class _DetailsCard extends State<DetailsCard> {
                     ),
                   ),
                 ),
-                /// Lado derecho (Ver online)
+*/                /// Lado derecho (Ver online)
                 Expanded(
                   child: GestureDetector(
                     onTap: ()                 {
