@@ -271,6 +271,7 @@ class _VisaInfoState extends State<VisaInfo> {
                                   shopName: movementData["nombre_tienda"],
                                   amount: movementData["cantidad"],
                                   movementDate: movementData["fecha"],
+                                  ticketURL: movementData["ticketURL"],
                                 );
                               }),
                             );
