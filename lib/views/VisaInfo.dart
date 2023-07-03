@@ -68,6 +68,20 @@ class _VisaInfoState extends State<VisaInfo> {
             Fluttertoast.showToast(msg: "Proceso cancelado.\n\n${responseMap["body"]}");
           }
           else {
+            // El pago se realizó correctamente. Generamos factura
+            // y creamos el movimiento correspondiente
+            /// ////////////////////////////////////////////////////////////////////////////////////////////////////
+            Map<dynamic, dynamic> responseMap2 = await generateBillAndMovement(_visa, scan["visaNumber"]!, scan["amount"]!);
+            print("RESPONSE: $responseMap2");
+            if (responseMap2 != null) {
+              if (responseMap2["success"] == "0") {
+                Fluttertoast.showToast(msg: "Proceso cancelado.\n\n${responseMap2["body"]}");
+              }
+              else {
+                Fluttertoast.showToast(msg: "${responseMap2["body"]}");
+              }
+            }
+            /// ////////////////////////////////////////////////////////////////////////////////////////////////////
             Fluttertoast.showToast(msg: "${responseMap["body"]}");
           }
         }

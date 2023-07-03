@@ -363,3 +363,40 @@ Future<Map> pay (String incomeVisaNumber, String outcomeVisaNumber, String amoun
   }
   return resp;
 }
+
+/// GENERATE BILL AND MOVEMENT /////////////////////////////////////////////////
+Future<Map> generateBillAndMovement (String userVisaNumber, String shopVisaNumber, String amount) async {
+  const bool debugThis = false; // Para entrar en el modo depuración
+  final url = Uri.parse(CREATE_BILL_AND_MOVEMENT_URL);
+  final response = await http.post(url, body: {
+    'shopVisaNumber': shopVisaNumber,
+    'userVisaNumber': userVisaNumber,
+    'amount': amount,
+  });
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    if (DEBUGMODE && debugThis)
+      print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") { // Si se introdujeron los datos
+      if (DEBUGMODE && debugThis)
+        print("Datos enviados correctamente: ${respuesta["message"]}");
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+    else { // Si no se introdujeron los datos
+      if (DEBUGMODE && debugThis)
+        print("Error al enviar los datos: ${respuesta["message"]}");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    if (DEBUGMODE && debugThis)
+      print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}

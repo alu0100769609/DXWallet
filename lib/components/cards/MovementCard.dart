@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wallet_v2/components/alertdialogs/ImageAlertDialog.dart';
 
 import '../../constants/Constants.dart';
 import '../../constants/Strings.dart';
+import '../alertdialogs/DisconnectAlertDialog.dart';
 import 'DetailsCard.dart';
 
 class MovementCard extends StatefulWidget
@@ -10,11 +13,13 @@ class MovementCard extends StatefulWidget
   final String shopName;
   final String movementDate;
   final String amount;
+  final String ticketNumber;
   const MovementCard({
     Key? key,
     this.shopName = 'Shop Name', // Valor por defecto para shopName
     this.movementDate = 'Movement Date', // Valor por defecto para movementDate
     this.amount = 'Amount', // Valor por defecto para amount
+    this.ticketNumber = 'FAC001', // Valor por defecto para ticketNumber
   }) : super(key: key);
 
   @override
@@ -63,7 +68,7 @@ class _MovementCard extends State<MovementCard> {
                                     ),
                                     gapH10,
 
-                                    /// Número de ticket
+                                    /// Fecha de ticket
                                     SizedBox(
                                       child: Text(widget.movementDate,
                                           style: TextStyle(fontSize: NORMAL_SIZE)
@@ -102,7 +107,9 @@ class _MovementCard extends State<MovementCard> {
                         },
                         onTapView: () {
                           // Aquí debería mostrar el ticket asociado
-                          // TODO
+                          // TODO: En vez de url, pasarle la variable ruta
+                          launchUrl(Uri.parse("https://sebt.es/adexe/dxwallet/appBills/Ticket2.PNG"));
+//                          return ImageAlertDialog(imageURL: "https://sebt.es/adexe/dxwallet/appBills/Ticket2.PNG");
                           Fluttertoast.showToast(msg: "Ver online: ${widget.shopName}");
                         },
                       ) : EMPTY_BOX,

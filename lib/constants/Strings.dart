@@ -7,6 +7,7 @@ const String askIfLogout_str = "¿Realmente deseas cerrar sesión?";
 const String askNoAccount_str = "¿No tienes cuenta?";
 const String bankConnect_str = "Conectando con el banco... En breve tendrá su dinero disponible";
 const String cancel_str = "Cancelar";
+const String close_str = "Cerrar";
 const String createAccount_str = "Crear cuenta";
 const String create_str = "Crear";
 const String currency_str = "Moneda asociada";

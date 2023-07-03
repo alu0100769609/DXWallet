@@ -17,7 +17,8 @@ dependencies:
   cupertino_icons: ^1.0.2 # Iconos tipo IOS
   http: ^0.13.5 # Para peticiones html
   shared_preferences: ^2.0.9 # Para acceder a localstorage del móvil
-  flutter_barcode_scanner: ^2.0.0 # También para leer códigos QR
+  flutter_barcode_scanner: ^2.0.0 # Para leer códigos QR
+  url_launcher: ^6.0.4 #Para acceder a urls
 
 dev_dependencies:
   flutter_test:
