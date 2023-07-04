@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wallet_v2/components/alertdialogs/ChangePasswordAlertDialog.dart';
 import 'package:wallet_v2/connection/DniStorage.dart';
 
 import '../components/appbar/LoginAppBar.dart';
@@ -142,7 +143,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 gapW5,
-                                Icon(Icons.disabled_by_default,color: Colors.red,size: NORMAL_SIZE,)
+                                Icon(Icons.warning,color: Colors.amber,size: NORMAL_SIZE,)
                               ],
                             ),
                           ) :
@@ -206,17 +207,23 @@ class _ProfileState extends State<Profile> {
                               ),
                               /// Acceder
                               ElevatedButton(
-                                  onPressed: () async {
-                                    // petición
-                                    Fluttertoast.showToast(msg: "Alert Cambiar contraseña");
-                                  },
-                                  style: ButtonStyle(
-                                    overlayColor: MaterialStateProperty.all<Color>(CUSTOM_PRIMARY),
-                                    backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
-                                  ),
-                                  child: const Text(changePassword_str,
-                                      style: TextStyle(color: CUSTOM_BLACK)
-                                  )
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.all<Color>(CUSTOM_PRIMARY),
+                                  backgroundColor: MaterialStateProperty.all<Color>(CUSTOM_SECONDARY_DARK),
+                                ),
+                                child: const Text(changePassword_str,
+                                    style: TextStyle(color: CUSTOM_BLACK)
+                                ),
+                                onPressed: () async {
+                                  // petición
+                                  return await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ChangePasswordAlertDialog();
+//                                    Fluttertoast.showToast(msg: "Alert Cambiar contraseña");
+                                    },
+                                  );
+                                }
                               ),
                             ],
                           ),

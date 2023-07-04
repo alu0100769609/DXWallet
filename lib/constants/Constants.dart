@@ -52,6 +52,7 @@ const String PAY_URL = 'https://sebt.es/adexe/dxwallet/app/pay.php';
 const String CREATE_BILL_AND_MOVEMENT_URL = 'https://sebt.es/adexe/dxwallet/app/createBillAndMovement.php';
 const String GET_USER_DATA_URL = 'https://sebt.es/adexe/dxwallet/app/getUserData.php';
 const String MODIFY_USER_DATA_URL = 'https://sebt.es/adexe/dxwallet/app/modifyUserData.php';
+const String CHANGE_PASSWORD_URL = 'https://sebt.es/adexe/dxwallet/app/changePassword.php';
 
 const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
 const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";

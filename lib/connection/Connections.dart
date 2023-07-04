@@ -469,3 +469,42 @@ Future<Map> modifyData(Map<String, String> data) async {
   }
   return resp;
 }
+
+/// CHANGE PASSWORD ////////////////////////////////////////////////////////////
+Future<Map> changePassword(String dni, String oldPassword, String password1, String password2) async {
+  const bool debugThis = false; // Para entrar en el modo depuración
+  final url = Uri.parse(CHANGE_PASSWORD_URL);
+  final response = await http.post(url, body: {
+    'dni': dni,
+    'oldPassword': oldPassword,
+    'password1': password1,
+    'password2': password2,
+  });
+
+  final Map <String, dynamic> resp = { "success" : "0", "body" : ""};
+
+  if (response.statusCode == 200) { // La conexión fue exitosa
+    if (DEBUGMODE && debugThis)
+      print('Conexión establecida');
+    dynamic respuesta = jsonDecode(response.body);
+    if (respuesta["success"] == "1") {
+      if (DEBUGMODE && debugThis)
+        print("Autenticación correcta: ${respuesta["login"]}");
+      // Guardamos la respuesta del login
+      resp.update("success", (value) => "1");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+    else { // Si no se hizo login
+      if (DEBUGMODE && debugThis)
+        print("Error de autenticación: ${respuesta["message"]}");
+      resp.update("body", (value) => respuesta["message"]);
+    }
+  }
+  else {
+    // Si la respuesta no es exitosa, mostramos un mensaje de error.
+    if (DEBUGMODE && debugThis)
+      print('Conexión no establecida: ${response.statusCode}');
+    resp.update("body", (value) => "ERROR: ${response.statusCode}");
+  }
+  return resp;
+}
