@@ -24,8 +24,6 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _txtEmail = TextEditingController();
   final TextEditingController _txtUsername = TextEditingController();
   final TextEditingController _txtNID = TextEditingController();
-  final TextEditingController _txtPass = TextEditingController();
-  final TextEditingController _txtPass2 = TextEditingController();
   final TextEditingController _txtName = TextEditingController();
   final TextEditingController _txtSurname1 = TextEditingController();
   final TextEditingController _txtSurname2 = TextEditingController();
@@ -109,7 +107,7 @@ class _ProfileState extends State<Profile> {
                       children: [
                         Text(_txtName.text.toString(),
                           style: TextStyle(
-                            fontSize: SUBTITLE_SIZE,
+                            fontSize: TITLE_SIZE,
                             color: CUSTOM_PRIMARY_DARK,
                           ),
                         ),
@@ -118,9 +116,9 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ) :
-                  const Text(personalData_str,
+                  Text(_txtName.text.toString(),
                     style: TextStyle(
-                      fontSize: SUBTITLE_SIZE,
+                      fontSize: TITLE_SIZE,
                       color: CUSTOM_PRIMARY_DARK,
                     ),
                   ),
@@ -294,7 +292,6 @@ class _ProfileState extends State<Profile> {
                         Map<String, String> data = {
                           "usuario": _txtUsername.text,
                           "email": _txtEmail.text,
-                          "password": _txtPass.text,
                           "nombre": _txtName.text,
                           "apellido1": _txtSurname1.text,
                           "apellido2": _txtSurname2.text,
