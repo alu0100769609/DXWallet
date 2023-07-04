@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_v2/views/Profile.dart';
 
 import 'constants/Constants.dart';
 import 'views/AddVisa.dart';
@@ -15,10 +16,11 @@ void main() {
       initialRoute: "/",
       routes: {
         '/': (context)=> Login(),
-        'Register': (context)=> const Register(),
-        'VisaList': (context)=> const VisaList(),
         'AddVisa': (context)=> const AddVisa(),
+        'Profile': (context)=> const Profile(),
+        'Register': (context)=> const Register(),
         'VisaInfo': (context)=> VisaInfo(),
+        'VisaList': (context)=> const VisaList(),
       },
     )
   );

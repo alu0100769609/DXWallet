@@ -33,7 +33,8 @@ class CustomDrawer extends Drawer {
             leading: const Icon(Icons.person, color: CUSTOM_PRIMARY_DARK),
             title: const Text('Perfil'),
             onTap: () {
-              Fluttertoast.showToast(msg: "Perfil");
+              Navigator.pushNamed(context, "Profile");
+//              Fluttertoast.showToast(msg: "Perfil");
             },
           ),
           StatefulBuilder(

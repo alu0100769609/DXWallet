@@ -50,11 +50,14 @@ const String GET_MOVEMENTS_URL = 'https://sebt.es/adexe/dxwallet/app/getListOfMo
 const String INCREASE_AMOUNT_URL = 'https://sebt.es/adexe/dxwallet/app/increaseAmount.php';
 const String PAY_URL = 'https://sebt.es/adexe/dxwallet/app/pay.php';
 const String CREATE_BILL_AND_MOVEMENT_URL = 'https://sebt.es/adexe/dxwallet/app/createBillAndMovement.php';
+const String GET_USER_DATA_URL = 'https://sebt.es/adexe/dxwallet/app/getUserData.php';
+const String MODIFY_USER_DATA_URL = 'https://sebt.es/adexe/dxwallet/app/modifyUserData.php';
 
 const String LARGE_LOGO_ROUTE = "assets/images/LogoAlargado.jpg";
 const String SMALL_LOGO_ROUTE = "assets/images/LogoCuadrado.png";
 const String BLUE_CREDIT_CARD = "assets/images/TarjetaAzul.png";
 const String RED_CREDIT_CARD = "assets/images/TarjetaRoja.png";
+const String PROFILE_PHOTO = "assets/images/Person.png";
 
 /// RegExp: Para expresiones regulares
 const String REGEXP_VALIDATE_EMAIL = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -70,6 +73,7 @@ const double SMALL_SIZE = 10;
 const SizedBox EMPTY_BOX = SizedBox();
 
 // Cajas vacías para la separación en filas
+const SizedBox gapH5 = SizedBox(height: 5);
 const SizedBox gapH10 = SizedBox(height: 10);
 const SizedBox gapH20 = SizedBox(height: 20);
 const SizedBox gapH30 = SizedBox(height: 30);
@@ -77,6 +81,7 @@ const SizedBox gapH40 = SizedBox(height: 40);
 const SizedBox gapH50 = SizedBox(height: 50);
 
 // Cajas vacías para la separación en columnas
+const SizedBox gapW5 = SizedBox(width: 5);
 const SizedBox gapW10 = SizedBox(width: 10);
 const SizedBox gapW20 = SizedBox(width: 20);
 const SizedBox gapW30 = SizedBox(width: 30);
