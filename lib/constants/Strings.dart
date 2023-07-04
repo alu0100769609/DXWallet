@@ -34,6 +34,7 @@ const String onlineView_str = "Ver online";
 const String password_str = "Contraseña";
 const String pay_str = "Pago con tarjeta";
 const String personalData_str = "Datos personales";
+const String profileData_str = "Datos de perfil";
 const String phone_str = "Teléfono";
 const String readAndAcceptPolicy_str = "He leído y acepto la política de privacidad y protección de datos";
 const String repeatPassword_str = "Repetir contraseña";
